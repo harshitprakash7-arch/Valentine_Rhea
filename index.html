@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Will You Be My Valentine Rheaa?</title>
+    <style>
+        :root{
+            --bg:#fff0f6;
+            --card:#ffffff;
+            --accent:#ff3366;
+            --muted:#777;
+            --shadow: 0 6px 20px rgba(0,0,0,0.08);
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+        html,body{height:100%}
+        body{
+            margin:0;
+            background: radial-gradient(1200px 600px at 10% 10%, #ffeef4 0%, transparent 15%),
+                                    radial-gradient(900px 400px at 90% 80%, #fff5f8 0%, transparent 15%),
+                                    var(--bg);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:24px;
+        }
+        .card{
+            width:100%;
+            max-width:720px;
+            background:var(--card);
+            border-radius:16px;
+            padding:36px;
+            box-shadow:var(--shadow);
+            text-align:center;
+        }
+        h1{
+            margin:0 0 8px;
+            color:var(--accent);
+            font-size:28px;
+            letter-spacing:0.2px;
+        }
+        p.lead{
+            margin:0 0 24px;
+            color:var(--muted);
+        }
+        .options{
+            display:flex;
+            gap:18px;
+            justify-content:center;
+            flex-wrap:wrap;
+        }
+        .option{
+            flex: 0 0 160px;
+            min-width:120px;
+            padding:18px 14px;
+            border-radius:12px;
+            cursor:pointer;
+            user-select:none;
+            transition:transform .14s ease, box-shadow .14s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:600;
+            font-size:18px;
+        }
+        .option:active{ transform:translateY(2px) }
+        .yes{
+            background: linear-gradient(135deg,#ff6b96,#ff2d6f);
+            color:white;
+        }
+        .no{
+            background: linear-gradient(135deg,#f0f0f3,#d9d9dd);
+            color:#444;
+            border:1px solid rgba(0,0,0,0.04);
+        }
+        .result{
+            margin-top:20px;
+            font-size:18px;
+            color:#333;
+            min-height:28px;
+        }
+        .heart{
+            display:inline-block;
+            margin-left:8px;
+            transform-origin:center;
+            transition:transform .3s ease;
+        }
+        .celebrate{
+            animation:pop .6s ease;
+        }
+        @keyframes pop{
+            0%{ transform:scale(0.6) }
+            60%{ transform:scale(1.15) }
+            100%{ transform:scale(1) }
+        }
+
+        @media (max-width:420px){
+            .option{ flex:0 0 48%; font-size:16px; padding:14px }
+        }
+    </style>
+</head>
+<body>
+    <main class="card" role="main" aria-labelledby="heading">
+        <h1 id="heading">Will You Be My Valentine Rheaa?</h1>
+        <p class="lead">Choose one</p>
+
+        <div class="options" role="group" aria-label="Options">
+            <button class="option yes" id="yesBtn" aria-pressed="false">Yesss <span class="heart" aria-hidden="true">❤️</span></button>
+            <button class="option no" id="noBtn" aria-pressed="false">no</button>
+        </div>
+
+        <div class="result" id="result" aria-live="polite"></div>
+    </main>
+
+    <script>
+        const yes = document.getElementById('yesBtn');
+        const no = document.getElementById('noBtn');
+        const result = document.getElementById('result');
+
+        yes.addEventListener('click', () => {
+            yes.setAttribute('aria-pressed','true');
+            no.setAttribute('aria-pressed','false');
+            result.textContent = "Yay! 💖 Thank you — you just made my day!";
+            const heart = yes.querySelector('.heart');
+            heart.classList.remove('celebrate');
+            void heart.offsetWidth;
+            heart.classList.add('celebrate');
+        });
+
+        no.addEventListener('click', () => {
+            no.setAttribute('aria-pressed','true');
+            yes.setAttribute('aria-pressed','false');
+            result.textContent = "Okay — no worries. Thanks for your honesty.";
+        });
+    </script>
+</body>
+</html>
